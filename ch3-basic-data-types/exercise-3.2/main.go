@@ -1,0 +1,80 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math"
+	"os"
+)
+
+const (
+	width, height = 1080, 640
+	cells         = 150
+	xyrange       = 30.0
+	xyscale       = width / 2 / xyrange
+	zscale        = height * 0.4
+	angle         = math.Pi / 6
+)
+
+var sin30, cos30 = math.Sin(angle), math.Cos(angle)
+
+func main() {
+	fmt.Printf("<svg xmlns='http://www.w3.org/2000/svg' "+
+		"style='stroke: grey; fill: blue; stroke-width: 0.7' "+
+		"width='%d' height='%d'>", width, height)
+
+	// take in Args to specify plot
+	plot := os.Args[1]
+	// define a zero-value
+	fr := func(r float64) float64 {
+		return r
+	}
+	if plot == "saddle" {
+		fr = func(r float64) float64 {
+			return math.Sin(r) / r
+		}
+	} else if plot == "egg" {
+		fr = func(r float64) float64 {
+			return r
+		}
+	} else if plot == "mogul" {
+		fr = func(r float64) float64 {
+			return r
+		}
+	}
+
+	for i := 0; i < cells; i++ {
+		for j := 0; j < cells; j++ {
+			ax, ay := corner(i+1, j, fr)
+			bx, by := corner(i, j, fr)
+			cx, cy := corner(i, j+1, fr)
+			dx, dy := corner(i+1, j+1, fr)
+			fmt.Printf("<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
+				ax, ay, bx, by, cx, cy, dx, dy)
+		}
+	}
+	fmt.Println("</svg>")
+}
+
+func corner(i, j int, fr func(r float64) float64) (float64, float64) {
+	x := xyrange * (float64(i)/cells - 0.5)
+	y := xyrange * (float64(j)/cells - 0.5)
+
+	z, err := f(x, y, fr)
+	if err != nil {
+		return width / 2, height / 2
+	}
+
+	sx := width/2 + (x-y)*cos30*xyscale
+	sy := height/2 + (x+y)*sin30*xyscale - z*zscale
+	return sx, sy
+}
+
+func f(x, y float64, fr func(r float64) float64) (float64, error) {
+	r := math.Hypot(x, y)
+	// we have a problem right at the origin, i.e. r == 0
+	if math.IsInf(r, 1) || math.IsNaN(r) || r == 0 {
+		return 1, errors.New("Got NaN or Inf")
+	}
+	return fr(r), nil
+}
