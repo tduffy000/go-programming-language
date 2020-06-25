@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>The Go Programming Language - Errata</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <style>
+body {
+	width:	38em;
+	margin: auto;
+}
+pre {
+	padding-left: 1em;
+}
+  </style>
+</head>
+<body>
+  <h1>Errata</h1>
+  <p>
+    <b>p.xiii, ¶1</b>: delete "Object Oberon".
+    (Thanks to Luca Boasso, 2016-02-15.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.9, ¶2</b>: For "can compared", read "can be compared".
+    (Thanks to Antonio Macías Ojeda, 2015-10-22.
+    Corrected in the second printing.)
+  </p>
+
+  <p>
+    <b>p.13</b>: As printed, the <code>gopl.io/ch1/lissajous</code> program
+    is deterministic, not random.  We've added the statement below to
+    the downloadable program so that it prints a pseudo-random image
+    each time it is run. (Thanks to Randall McPherson, 2015-10-19.)
+  </p>
+  <pre>rand.Seed(time.Now().UTC().UnixNano())</pre>
+
+  <p>
+    <b>p.15, ¶2</b>: For "inner loop", read "outer loop".
+    (Thanks to Ralph Corderoy, 2015-11-28.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.19, ¶2</b>: For "Go's libraries makes", read "Go's library makes".
+    (Thanks to Victor Farazdagi, 2015-11-30.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.31, ¶6</b>: for "then the short variable declaration acts
+    like an <i>assignment</i> to those variables", read "then, for
+    those variables, the short variable declaration acts like an
+    <i>assignment</i>" and in ¶7, the word "assigns" should be
+    italicized for emphasis.
+    (Thanks to Terry McKenna, 2016-11-18.)
+  </p>
+
+  <p>
+    <b>p.40, ¶4</b>: For "value of the underlying type", read
+    "value of an unnamed type with the same underlying type".
+    <!-- The "unnamed" restriction is there for basic types, which
+         are named, so it forbids Celsius(0)==float64(0), for instance.
+     -->
+    (Thanks to Carlos Romero Brox, 2015-12-19.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.40, ¶1</b>: The paragraph should end with a period, not a comma.
+    (Thanks to Victor Farazdagi, 2015-11-30.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.43, ¶3</b>: Import declarations are explained in §10.4, not §10.3.
+    (Thanks to Peter Jurgensen, 2015-11-21.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.48</b>: <code>f.ReadByte()</code> serves as an
+    example of a reference to <code>f</code>, but <code>*os.File</code> has no such
+    method.  For "<code>ReadByte</code>", read "<code>Stat</code>", four times.
+    (Thanks to Peter Olsen, 2016-01-06.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.52, ¶2</b>: For "an synonym", read "a synonym", twice.
+    (Corrected in the second printing.)
+  </p>
+
+  <p>
+    <b>p.52, ¶9</b>: For "The integer arithmetic operators", read
+    "The arithmetic operators".
+    (Thanks to Yoshiki Shibata, 2015-12-20.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.57, ¶4</b>: To "any comparison with NaN always yields false",
+    add "(except <code>!=</code>, which is always the negation of
+    <code>==</code>)".
+    (Thanks to Luca Boasso, 2016-02-15.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.68</b>: The table of UTF-8 encodings is missing a bit from each first byte.
+    The corrected table is shown below.
+    (Thanks to Akshay Kumar, 2015-11-02.
+    Corrected in the second printing.)
+  </p>
+  
+  <pre>
+0xxxxxxx                             runes 0−127     (ASCII)
+110xxxxx 10xxxxxx                    128−2047        (values <128 unused)
+1110xxxx 10xxxxxx 10xxxxxx           2048−65535      (values <2048 unused)
+11110xxx 10xxxxxx 10xxxxxx 10xxxxxx  65536−0x10ffff  (other values unused)</pre>
+
+  <p>
+    <b>p.73, ¶1</b>: For "a exercise", read "an exercise".
+    (Thanks to vrajmohan, 2015-12-28.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.74</b>: The comment in <code>gopl.io/ch3/printints</code> should say
+    <code>fmt.Sprint</code>, not <code>fmt.Sprintf</code>.
+    (Corrected in the second printing.)
+  </p>
+
+  <p>
+    <b>p.75, ¶4</b>: For "<code>%u</code>", read "%<code>o</code>".
+    (Thanks to William Hannish, 2015-12-21.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.76</b>: The comment <code>// "time.Duration 5m0s</code> should have
+    a closing double-quotation mark.
+    (Corrected in the second printing.)
+  </p>
+
+  <p>
+    <b>p.79, ¶4</b>: "When an untyped constant is
+    assigned to a variable, as in the first statement below, or
+    appears on the right-hand side of a variable declaration with an
+    explicit type, as in the other three statements, ..." has it backwards:
+    the <i>first</i>
+    statement is a declaration; the other three are assignments.
+    (Thanks to Yoshiki Shibata, 2015-11-09.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.84, ¶2</b>: For "used as function parameters",
+    read "used as function parameters or results".
+    (Thanks to Yang Yang 杨玚, 2016-04-18.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.107, ¶6</b>: in "JSON's <code>\U</code><i>hhhh</i> numeric escapes",
+    the <code>U</code> should be lowercase: <code>\u</code><i>hhhh</i>.
+    (Thanks to Kohei Marumoto (丸本耕平), 2016-09-23.  Corrected in the fourth printing.)
+  </p>
+ 
+  <p>
+    <b>p.112</b>: Exercise 4.11 calls for a "CRUD" (create, read, update,
+    delete) tool for GitHub Issues.  Since GitHub does not currently allow
+    Issues to be deleted, for "delete", read "close".
+    (Thanks to Yoshiki Shibata, 2016-01-18.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.115</b>: The anchor element in
+    <code>gopl.io/ch4/issueshtml</code>'s template is missing a closing
+    <code>&lt;/a&gt;</code> tag.
+    (Thanks to Taj Khattra, 2016-01-19.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.132, code display following ¶3</b>: The final comment
+    should read:<br/>
+    <code>// compile error: can't assign func(int, int) int to func(int) int</code><br/>
+    (Thanks to Toni Suter, 2015-11-21.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.139, ¶4</b>: For "in Chapter 3", read "in Chapter 4".
+    (Thanks to Yoshiki Shibata, 2016-07-03.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.160, ¶4</b>: For <code>Get("item"))</code>,
+    read <code>Get("item")</code>.
+    (Thanks to Yoshiki Shibata, 2016-02-01.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.166, ¶2</b>: For "way", read "a way".
+    (Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.177, ¶6</b>: For "as we saw", read "as we will see".
+    (Thanks to David Drysdale, 2016-07-05.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.200, <code>TestEval</code> function</b>: The format string in the final call to
+    <code>t.Errorf</code> should format <code>test.env</code> with <code>%v</code>,
+    not <code>%s</code>.
+    (Thanks to Mitsuteru Sawa, 2015-12-07.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.222, Exercise 8.1</b>: The port numbers for <code>London</code>
+    and <code>Tokyo</code> should be swapped in the final command to
+    match the earlier commands.
+    (Thanks to Kiyoshi Kamishima, 2016-01-08.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.235, ¶3</b>: <code>makeThumbnails</code> refers to the second draft
+    of the function, <code>makeThumbnails2</code>.
+    (Thanks to 有賀功 Isao Aruga, 2016-07-13.  Corrected in the fourth printing.)
+  </p>
+ 
+  <p>
+    <b>p.272, ¶3</b>: for "the request body", read "the response body".
+    (Thanks to 曹春晖, 2016-01-19.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.288, code display following ¶4</b>: In the import declaration, for
+    <code>"database/mysql"</code>, read <code>"database/sql"</code>.
+    (Thanks to Jose Colon Rodriguez, 2016-01-09.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.320, code display following ¶1</b>: The suggested test case
+    does not exercise the unary plus operator, nor is
+    the <code>eval</code> package qualifier appropriate:
+    <pre>{"-x * -x", eval.Env{"x": 2}, "4"}</pre>
+
+    It should read:
+    <pre>{"+x * -x", Env{"x": 2}, "-4"}</pre>
+    (Thanks to Shinji Dosaka, 2016-07-15.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.341, Exercise 12.7</b>: For "decoder" and
+    "<code>json.Decoder</code>", read "encoder" and
+    "<code>json.Encoder</code>", respectively.
+    (Thanks to Yoshiki Shibata, 2016-08-27.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.347, Exercise 12.8</b>: For "like <code>json.Marshal</code>",
+    read "like <code>json.Unmarshal</code>".
+    (Thanks to chai2010, 2016-01-01.  Corrected in the fourth printing.)
+  </p>
+
+  <p>
+    <b>p.362</b>: The <code>gopl.io/ch13/bzip</code> program
+    does not comply with the
+    <a href='https://github.com/golang/proposal/blob/master/design/12416-cgo-pointers.md'>proposed rules for passing pointers between Go and C code</a>
+    because the C function <code>bz2compress</code> temporarily stores a Go
+    pointer (<code>in</code>) into the Go heap
+    (the <code>bz_stream</code> variable).
+
+    The <code>bz_stream</code> variable should be allocated, and
+    explicitly freed after the call to
+    <code>BZ2_bzCompressEnd</code>, by C functions.
+
+    (Thanks to Joe Tsai, 2015-11-18.  Corrected in the third printing.)
+  </p>
+
+  <p>
+    <b>p.366, Exercise 13.3</b>: For <code>bzip2.writer</code>, read <code>bzip.writer</code>.
+    (Thanks to Yoshiki Shibata, 2016-09-05.  Corrected in the fourth printing.)
+  </p>
+
+</body>
+</html>
