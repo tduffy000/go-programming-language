@@ -1,0 +1,40 @@
+PROCS = 1
+
+real	0m0.679s
+user	0m0.575s
+sys	0m0.153s
+PROCS = 2
+
+real	0m0.439s
+user	0m0.597s
+sys	0m0.101s
+PROCS = 3
+
+real	0m0.447s
+user	0m0.728s
+sys	0m0.154s
+PROCS = 4
+
+real	0m0.295s
+user	0m0.496s
+sys	0m0.146s
+PROCS = 5
+
+real	0m0.436s
+user	0m0.906s
+sys	0m0.243s
+PROCS = 6
+
+real	0m0.462s
+user	0m0.802s
+sys	0m0.196s
+PROCS = 7
+
+real	0m0.330s
+user	0m0.643s
+sys	0m0.177s
+PROCS = 8
+
+real	0m0.462s
+user	0m1.091s
+sys	0m0.249s
